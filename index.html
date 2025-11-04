@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SITE MANEIRO D+</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1 class="logo">SITE MANEIRO D+</h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#" class="abrir-modal" data-modal="loginModal">Login</a></li>
+                    <li><a href="#" class="abrir-modal" data-modal="cadastroClienteModal">Cadastrar-se</a></li>
+                    <li><a href="#" class="abrir-modal" data-modal="cadastroProdutoModal">Cadastro de Produtos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="carrossel">
+            <div class="carrossel-container">
+                <div class="carrossel-slide ativo">
+                    <img src="mouse.jpg" class="carrossel-imagem" alt="Produto 1">
+                </div>
+                <div class="carrossel-slide">
+                    <img src="MONITOR.avif" class="carrossel-imagem" alt="Produto 2">
+                </div>
+                <div class="carrossel-slide">
+                    <img src="VENT.jpg" class="carrossel-imagem" alt="Produto 3">
+                </div>
+            </div>
+
+            <div class="carrossel-indicadores">
+                <div class="indicador ativo"></div>
+                <div class="indicador"></div>
+                <div class="indicador"></div>
+            </div>
+        </section>
+
+        <section class="produtos-container">
+            <article class="produto-card">
+                <img src="mouse.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">MOUSE MANEIRO D+</h3>
+                    <p class="produto-descricao">UM MOUSE EXTREMAMENTE MANEIRO (com luzinha).</p>
+                    <p class="produto-preco">R$ 299,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="MONITOR.avif" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">MONITOR MUITO MASSA</h3>
+                    <p class="produto-descricao">UM MONITOR MUITO DAHORA PRA VOCÊ VER SEUS COISOS.</p>
+                    <p class="produto-preco">R$ 399,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="VENT.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">VENTILADOR REFRESCA DEMAIS</h3>
+                    <p class="produto-descricao">VENTILADOR QUE REFRESCA E RODA.</p>
+                    <p class="produto-preco">R$ 399,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="KA.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">ROBERTO</h3>
+                    <p class="produto-descricao">ROBERTO.</p>
+                    <p class="produto-preco">R$ 999,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p class="direitos">© 2025 MANEIROD+.corp — Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- MODAL LOGIN -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="fechar">&times;</span>
+            <h2>Login</h2>
+            <form>
+                <label>Email:</label>
+                <input type="email" required>
+                <label>Senha:</label>
+                <input type="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL CADASTRO CLIENTE -->
+    <div id="cadastroClienteModal" class="modal">
+        <div class="modal-content">
+            <span class="fechar">&times;</span>
+            <h2>Cadastro de Cliente</h2>
+            <form>
+                <label>Nome Completo:</label>
+                <input type="text" required>
+                <label>Email:</label>
+                <input type="email" required>
+                <label>Telefone:</label>
+                <input type="tel">
+                <label>Endereço:</label>
+                <textarea rows="3"></textarea>
+                <label>Senha:</label>
+                <input type="password" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL CADASTRO PRODUTO -->
+    <div id="cadastroProdutoModal" class="modal">
+        <div class="modal-content">
+            <span class="fechar">&times;</span>
+            <h2>Cadastro de Produto</h2>
+            <form>
+                <label>Nome do Produto:</label>
+                <input type="text" required>
+                <label>Descrição:</label>
+                <textarea rows="3"></textarea>
+                <label>Preço:</label>
+                <input type="number" step="0.01" required>
+                <label>Imagem (URL ou arquivo):</label>
+                <input type="text" placeholder="URL da imagem">
+                <button type="submit">Adicionar Produto</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const carrosselContainer = document.querySelector('.carrossel-container');
+        const slides = document.querySelectorAll('.carrossel-slide');
+        const indicadores = document.querySelectorAll('.indicador');
+        let currentIndex = 0;
+
+        function mudarSlide(novoIndex) {
+            if (novoIndex < 0) novoIndex = slides.length - 1;
+            if (novoIndex >= slides.length) novoIndex = 0;
+            carrosselContainer.style.transform = `translateX(-${novoIndex * 100}%)`;
+            currentIndex = novoIndex;
+            indicadores.forEach(ind => ind.classList.remove('ativo'));
+            indicadores[currentIndex].classList.add('ativo');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') mudarSlide(currentIndex - 1);
+            if (e.key === 'ArrowRight') mudarSlide(currentIndex + 1);
+        });
+
+        const abrirModalBtns = document.querySelectorAll('.abrir-modal');
+        const modais = document.querySelectorAll('.modal');
+        const fecharBtns = document.querySelectorAll('.fechar');
+
+        abrirModalBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modalAlvo = document.getElementById(btn.dataset.modal);
+                modalAlvo.style.display = 'flex';
+            });
+        });
+
+        fecharBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.modal').style.display = 'none';
+            });
+        });
+
+        window.onclick = function(e) {
+            modais.forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+    </script>
+</body>
+</html>
